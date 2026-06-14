@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Travel Buddy</title>
+
+  <style>
+    /* ================================================
+       BASE CSS – zajednički stilovi
+       ================================================ */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      padding: 30px 16px;
+      min-height: 100vh;
+    }
+
+    .phone {
+      width: 390px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .status-bar {
+      background: #1a56db;
+      color: #ffffff;
+      font-size: 12px;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .screen {
+      display: none;
+      padding: 24px 20px;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .screen-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .screen-header h2 {
+      font-size: 18px;
+      color: #1a1a2e;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #1a56db;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      background: #1a56db;
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: #e8edf8;
+      color: #1a56db;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 2px dashed #e0e0e0;
+      margin: 18px 0 14px;
+    }
+
+    .author-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 2px 8px;
+      margin-bottom: 10px;
+    }
+
+    .author-mateo {
+      background: #fff3e0;
+      color: #e65100;
+      border: 1px solid #ffb74d;
+    }
+
+    .author-barbara {
+      background: #fce4ec;
+      color: #880e4f;
+      border: 1px solid #f48fb1;
+    }
+
+    .author-luka {
+      background: #e8f5e9;
+      color: #1b5e20;
+      border: 1px solid #81c784;
+    }
+
+    .error-msg {
+      color: #c00;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>Travel Buddy</span>
+      <span>📶 🔋</span>
+    </div>
+
+
+  </div>
+
+  <script>
+  
+
+    function goTo(screenId) {
+      const screens = document.querySelectorAll('.screen');
+
+      screens.forEach(function(screen) {
+        screen.classList.remove('active');
+      });
+
+      const selectedScreen = document.getElementById(screenId);
+
+      if (selectedScreen) {
+        selectedScreen.classList.add('active');
+      }
+    }
+
+
+
+  </script>
+</body>
+</html>

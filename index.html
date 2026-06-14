@@ -305,6 +305,24 @@
   margin: 14px 0 6px;
   line-height: 1.5;
 }
+/* R005 – Statistika u modalu */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #333;
+}
+ 
+.stat-row:last-of-type {
+  border: none;
+}
+ 
+.stat-row span:last-child {
+  font-weight: 600;
+  color: #1a56db;
+}
   </style>
 </head>
 
@@ -399,7 +417,7 @@
 </div>
  
       <div class="transport-actions">
-<button class="details-btn" onclick="openModal()">Prikaži detalje</button>
+<button class="details-btn" onclick="openModal('metro')">Prikaži detalje</button>
 <input type="checkbox" id="chk-metro" onchange="updateSummary()" />
 </div>
 </div>
@@ -416,7 +434,7 @@
 </div>
  
       <div class="transport-actions">
-<button class="details-btn" onclick="openModal()">Prikaži detalje</button>
+<button class="details-btn" onclick="openModal('tram')">Prikaži detalje</button>
 <input type="checkbox" id="chk-tram" onchange="updateSummary()" />
 </div>
 </div>
@@ -433,7 +451,7 @@
 </div>
  
       <div class="transport-actions">
-<button class="details-btn" onclick="openModal()">Prikaži detalje</button>
+<button class="details-btn" onclick="openModal('bus')">Prikaži detalje</button>
 <input type="checkbox" id="chk-bus" onchange="updateSummary()" />
 </div>
 </div>
@@ -456,7 +474,26 @@
     <div class="modal-note" id="modal-description">
       Ovdje se prikazuju dodatne informacije o odabranom načinu prijevoza.
 </div>
+ <!-- LUKA HTML – R005 -->
+<hr class="section-divider" />
  
+<span class="author-tag author-luka">✏️ Luka – R005</span>
+ 
+<div class="stat-row">
+<span>Prosječno vrijeme čekanja</span>
+<span id="stat-wait">4 minute</span>
+</div>
+ 
+<div class="stat-row">
+<span>Prosječno vrijeme putovanja</span>
+<span id="stat-speed">2 min/km</span>
+</div>
+ 
+<div class="stat-row">
+<span>Prosječna cijena karte</span>
+<span id="stat-price">2,40 €</span>
+</div>
+<!-- KRAJ LUKA HTML – R005 -->
     <button class="btn btn-primary" onclick="selectTransportAndClose()">
       Odaberi ovaj prijevoz
 </button>
@@ -515,22 +552,38 @@
         const title = document.getElementById('modal-title');
         const description = document.getElementById('modal-description');
       
-        if (type === 'tram') {
-          title.textContent = '🚊 Detalji: Tramvaj';
-          description.textContent =
-            'Tramvaj je praktičan za kraće gradske rute i često prolazi kroz središte grada.';
-        } else if (type === 'bus') {
-          title.textContent = '🚌 Detalji: Autobus';
-          description.textContent =
-            'Autobus je dobar izbor za udaljenije lokacije i dijelove grada koji nisu povezani metroom.';
-        } else {
-          title.textContent = '🚇 Detalji: Metro';
-          description.textContent =
-            'Metro je najbrži izbor za kretanje po gradu i pogodan je za dulje udaljenosti.';
-        }
-      
-        modal.classList.add('open');
-      }
+        const statWait = document.getElementById('stat-wait');
+        const statSpeed = document.getElementById('stat-speed');
+        const statPrice = document.getElementById('stat-price');
+ 
+          if (type === 'tram') {
+            title.textContent = '🚊 Detalji: Tramvaj';
+            description.textContent =
+              'Tramvaj je praktičan za kraće gradske rute i često prolazi kroz središte grada.';
+        
+            statWait.textContent = '6 minuta';
+            statSpeed.textContent = '3 min/km';
+            statPrice.textContent = '2,40 €';
+          } else if (type === 'bus') {
+            title.textContent = '🚌 Detalji: Autobus';
+            description.textContent =
+              'Autobus je dobar izbor za udaljenije lokacije i dijelove grada koji nisu povezani metroom.';
+        
+            statWait.textContent = '8 minuta';
+            statSpeed.textContent = '4 min/km';
+            statPrice.textContent = '2,40 €';
+          } else {
+            title.textContent = '🚇 Detalji: Metro';
+            description.textContent =
+              'Metro je najbrži izbor za kretanje po gradu i pogodan je za dulje udaljenosti.';
+        
+            statWait.textContent = '4 minute';
+            statSpeed.textContent = '2 min/km';
+            statPrice.textContent = '2,40 €';
+          }
+        
+          modal.classList.add('open');
+}
       
       function closeModal() {
         const modal = document.getElementById('transport-modal');

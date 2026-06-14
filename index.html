@@ -267,6 +267,44 @@
 .date-row .form-group {
   flex: 1;
 }
+
+/* R004 – Modal detalji */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+  justify-content: center;
+  align-items: flex-end;
+}
+ 
+.modal-overlay.open {
+  display: flex;
+}
+ 
+.modal {
+  background: #fff;
+  width: 390px;
+  border-radius: 24px 24px 0 0;
+  padding: 28px 24px 32px;
+}
+ 
+.modal h3 {
+  font-size: 17px;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+ 
+.modal-note {
+  font-size: 13px;
+  color: #666;
+  background: #f7f9ff;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 14px 0 6px;
+  line-height: 1.5;
+}
   </style>
 </head>
 
@@ -408,7 +446,27 @@
     Promijeni grad i datum
 </button>
 </div>
+ <!-- BARBARA HTML – R004 -->
+<div class="modal-overlay" id="transport-modal">
+<div class="modal">
+<span class="author-tag author-barbara">✏️ Barbara – R004</span>
  
+    <h3 id="modal-title">Detalji prijevoza</h3>
+ 
+    <div class="modal-note" id="modal-description">
+      Ovdje se prikazuju dodatne informacije o odabranom načinu prijevoza.
+</div>
+ 
+    <button class="btn btn-primary" onclick="selectTransportAndClose()">
+      Odaberi ovaj prijevoz
+</button>
+ 
+    <button class="btn btn-secondary" onclick="closeModal()">
+      Zatvori
+</button>
+</div>
+</div>
+<!-- KRAJ BARBARA HTML – R004 -->
 
   </div>
 
@@ -428,7 +486,7 @@
         selectedScreen.classList.add('active');
       }
     }
-    
+
     function validateCity() {
         const cityInput = document.getElementById('city-input');
         const dateFrom = document.getElementById('date-from');
@@ -452,8 +510,35 @@
         goTo('screen-transport');
       }
     
-      function openModal() {
-        alert('Detalji prijevoza bit će dodani u R004.');
+      function openModal(type) {
+        const modal = document.getElementById('transport-modal');
+        const title = document.getElementById('modal-title');
+        const description = document.getElementById('modal-description');
+      
+        if (type === 'tram') {
+          title.textContent = '🚊 Detalji: Tramvaj';
+          description.textContent =
+            'Tramvaj je praktičan za kraće gradske rute i često prolazi kroz središte grada.';
+        } else if (type === 'bus') {
+          title.textContent = '🚌 Detalji: Autobus';
+          description.textContent =
+            'Autobus je dobar izbor za udaljenije lokacije i dijelove grada koji nisu povezani metroom.';
+        } else {
+          title.textContent = '🚇 Detalji: Metro';
+          description.textContent =
+            'Metro je najbrži izbor za kretanje po gradu i pogodan je za dulje udaljenosti.';
+        }
+      
+        modal.classList.add('open');
+      }
+      
+      function closeModal() {
+        const modal = document.getElementById('transport-modal');
+        modal.classList.remove('open');
+      }
+      
+      function selectTransportAndClose() {
+        closeModal();
       }
     
       function updateSummary() {

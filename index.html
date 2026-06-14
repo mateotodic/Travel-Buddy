@@ -136,7 +136,51 @@
       display: none;
     }
 
+    /* R001 – Početni ekran */
+.app-logo {
+  text-align: center;
+  padding: 24px 0 20px;
+}
 
+.app-logo .icon {
+  font-size: 48px;
+}
+
+.app-logo h1 {
+  font-size: 22px;
+  color: #1a1a2e;
+  margin-top: 8px;
+}
+
+.app-logo p {
+  color: #666;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.menu-card {
+  background: #f7f9ff;
+  border: 1px solid #dde3f5;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  background: #e8edf8;
+}
+
+.menu-card h3 {
+  font-size: 15px;
+  color: #1a1a2e;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
 
 
 
@@ -151,6 +195,30 @@
       <span>Travel Buddy</span>
       <span>📶 🔋</span>
     </div>
+    <div class="screen active" id="screen-home">
+  <span class="author-tag author-mateo">✏️ Mateo – R001</span>
+
+  <div class="app-logo">
+    <div class="icon">🗺️</div>
+    <h1>Travel Buddy</h1>
+    <p>Planiraj kretanje u novom gradu</p>
+  </div>
+
+  <div class="menu-card" onclick="goTo('screen-city')">
+    <h3>🧭 Planiraj kretanje u gradu</h3>
+    <p>Odaberi grad, prijevoz i lokacije</p>
+  </div>
+
+  <div class="menu-card">
+    <h3>📋 Pregled spremljenih planova</h3>
+    <p>Pregledaj svoje prethodne planove</p>
+  </div>
+
+  <div class="menu-card">
+    <h3>🎫 Informacije o kartama</h3>
+    <p>Saznaj gdje i kako kupiti kartu</p>
+  </div>
+</div>
 
 
   </div>

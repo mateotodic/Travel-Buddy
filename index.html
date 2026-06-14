@@ -428,7 +428,37 @@
         selectedScreen.classList.add('active');
       }
     }
-
+    
+    function validateCity() {
+        const cityInput = document.getElementById('city-input');
+        const dateFrom = document.getElementById('date-from');
+        const dateTo = document.getElementById('date-to');
+        const errorMsg = document.getElementById('city-error');
+    
+        const city = cityInput.value.trim();
+        const from = dateFrom.value;
+        const to = dateTo.value;
+    
+        if (city === '' || from === '' || to === '') {
+          errorMsg.style.display = 'block';
+          return;
+        }
+    
+        errorMsg.style.display = 'none';
+    
+        const transportTitle = document.querySelector('#screen-transport h2');
+        transportTitle.textContent = 'Dostupni prijevoz – ' + city;
+    
+        goTo('screen-transport');
+      }
+    
+      function openModal() {
+        alert('Detalji prijevoza bit će dodani u R004.');
+      }
+    
+      function updateSummary() {
+        console.log('Sažetak odabira bit će dodan u R006.');
+      }
 
 
   </script>
